@@ -16,15 +16,14 @@ wss.on('connection', (socket, req) => {
 //              console.log(key)
 //}
     if(users[JSON.parse(data).receiver] != null){
-        users[JSON.parse(data).receiver].send(JSON.parse(data).message)
+        users[JSON.parse(data).receiver].send(data)
         }else{
-            console.log("not found");
             axios.post("http://localhost:2643/save-message",{
-                data:data
+                data:data,
             })
             .then(u=> {
                 console.log(u)
             })
-	}
+	    }
     })
-});
+}); 
