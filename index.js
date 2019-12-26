@@ -18,12 +18,15 @@ wss.on('connection', (socket, req) => {
     if(users[JSON.parse(data).receiver] != null){
         users[JSON.parse(data).receiver].send(data)
         }else{
-            axios.post("http://localhost:2643/save-message",{
-                data:data,
-            })
-            .then(u=> {
-                console.log(u)
-            })
+            // axios.post("http://localhost:2643/save-message",{
+            //     data:data,
+            // })
+            // .then(u=> {
+            //     socket.send(JSON.stringify({
+            //         response:u,
+            //         code:"#<SAVED>#"
+            //     }))
+            // })
 	    }
     })
 }); 
