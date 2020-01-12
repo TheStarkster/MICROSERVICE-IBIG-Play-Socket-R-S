@@ -11,9 +11,20 @@ wss.on('connection', (socket, req) => {
     users[req.url] = socket
     socket.on('message', (data) => {
         console.log(req.url + ":" + data)
-        if (users[JSON.parse(data).receiver] != null) {
-            users[JSON.parse(data).receiver].send(data)
+        if (JSON.parse(data).groupid != null) {
+            JSON.parse(data).participants.forEach(element => {
+                if (users[participants] != null) {
+                    users[JSON.parse(data).receiver].send(data)
+                }
+            });
+        } else {
+            if (users[JSON.parse(data).receiver] != null) {
+                users[JSON.parse(data).receiver].send(data)
+            }    
         }
+        // if (users[JSON.parse(data).receiver] != null) {
+        //     users[JSON.parse(data).receiver].send(data)
+        // }
         // else {
         //     axios.post("http://localhost:2643/save-message", {
         //         data: data,
@@ -21,3 +32,8 @@ wss.on('connection', (socket, req) => {
         // }
     })
 });
+async function SendToGroup() {
+    let promise = new Promise((res, rej) => {
+        //TODO send message to groups
+    })
+}
