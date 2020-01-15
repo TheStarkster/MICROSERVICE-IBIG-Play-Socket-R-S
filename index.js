@@ -13,9 +13,9 @@ wss.on('connection', (socket, req) => {
         console.log(req.url + ":" + data)
         if (JSON.parse(data).groupid != null) {
             console.log(JSON.parse(data))
-            console.log(JSON.parse(data).participants)
-            console.log(typeof(JSON.parse(data).participants))
-            JSON.parse(data).participants.forEach(element => {
+            console.log(JSON.parse(JSON.parse(data).participants))
+            console.log(typeof(JSON.parse(JSON.parse(data).participants)))
+            JSON.parse(JSON.parse(data).participants).forEach(element => {
                 if (users[element] != null && user[element] !== "/"+JSON.parse(data).sender_phone) {
                     users[element].send(data)
                 }
