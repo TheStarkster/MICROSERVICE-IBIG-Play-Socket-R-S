@@ -13,14 +13,14 @@ wss.on('connection', (socket, req) => {
         console.log(req.url + ":" + data)
         if (JSON.parse(data).groupid != null) {
             JSON.parse(data).participants.forEach(element => {
-                if (users[participants] != null) {
-                    users[JSON.parse(data).receiver].send(data)
+                if (users[element] != null && user[element] !== "/"+JSON.parse(data).sender_phone) {
+                    users[element].send(data)
                 }
             });
         } else {
             if (users[JSON.parse(data).receiver] != null) {
                 users[JSON.parse(data).receiver].send(data)
-            }    
+            }
         }
         // if (users[JSON.parse(data).receiver] != null) {
         //     users[JSON.parse(data).receiver].send(data)
