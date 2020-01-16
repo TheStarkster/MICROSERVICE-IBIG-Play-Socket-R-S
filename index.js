@@ -17,6 +17,10 @@ wss.on('connection', (socket, req) => {
             console.log(typeof(JSON.parse(JSON.parse(data).participants_phone)))
             JSON.parse(JSON.parse(data).participants_phone).forEach(element => {
                 if (users["/"+element] != null && users["/"+element] != "/"+JSON.parse(data).sender_phone) {
+                    console.log("------------------")
+                    console.log("/"+element)
+                    console.log("/"+JSON.parse(data).sender_phone)
+                    console.log("------------------")
                     users["/"+element].send(data)
                 }
             });
