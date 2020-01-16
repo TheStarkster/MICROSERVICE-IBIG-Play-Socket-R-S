@@ -20,6 +20,9 @@ wss.on('connection', (socket, req) => {
                     console.log("------------------")
                     console.log("/"+element)
                     console.log("/"+JSON.parse(data).sender_phone)
+                    console.log("*********")
+                    console.log(typeof("/"+element))
+                    console.log(typeof("/"+JSON.parse(data).sender_phone))
                     console.log("------------------")
                     users["/"+element].send(data)
                 }
